@@ -1,0 +1,126 @@
+/* cart.component.css */
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+/* عنوان الصفحة */
+header h1 {
+  margin: 0 !important;
+  padding: 10px !important;
+}
+
+:host {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+  display: block;
+}
+
+app-cart {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block;
+}
+
+
+header {
+  text-align: center;  
+  background-color: palevioletred;
+  color:white;
+  margin-top: 0 !important;
+  padding-top: 10px !important;
+  padding: 10px 0;
+  
+}
+
+  nav {
+    text-align: center;
+    background-color: palevioletred;
+    overflow: hidden;
+    padding:10px;
+    margin-bottom: 25px;
+  }
+  nav div {
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  gap: 10px;   /* مسافة بين العناصر */
+}
+nav a {
+  text-decoration: none;
+  color: white;
+  font-weight: 300;
+}
+
+nav p {
+  margin: 0;   /* إزالة المسافات العشوائية */
+  color: white;
+}
+
+  nav a:hover {
+   
+    background-color: rgb(243, 162, 189);
+  }
+
+
+/* حاوية الكروت */
+.cart-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+/* كل كارت/منتج */
+.cart-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 200px;
+  text-align: center;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+}
+
+/* صورة المنتج */
+.cart-item img {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
+  object-fit: contain;
+  transition: transform 0.7s ease;
+}
+.cart-item img:hover {
+  transform: scale(1.1);   /* تكبير 10% */
+}
+
+/* اسم المنتج */
+.cart-item h3 {
+  margin: 5px 0;
+}
+
+/* معلومات السعر والكمية */
+.cart-item p {
+  margin: 3px 0;
+}
+
+/* زر إزالة المنتج */
+.cart-item button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #b9309c;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cart-item button:hover {
+  background-color: #d32f2f;
+}
+
+/* الإجمالي الكبير */
+.grand-total {
+  text-align: center;
+  margin-top: 20px;
+  font-weight: bold;
+}

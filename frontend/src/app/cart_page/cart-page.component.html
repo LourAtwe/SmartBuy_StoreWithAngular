@@ -1,0 +1,84 @@
+<header><h2>My Cart 🛒</h2></header>
+<nav>
+  <div>
+    <a [routerLink]="['/']">Product List</a> | 
+    <a [routerLink]="['/cart']">My Cart 🛒</a>
+  </div>
+</nav>
+<div class="cart-page-container">
+  <!-- المنتجات -->
+  <div class="cart-items">
+    <div *ngFor="let item of cart" class="cart-item">
+      <img [src]="item.image" alt="{{item.name}}">
+      <h3>{{item.name}}</h3>
+      <p>Price: {{item.price | currency}}</p>
+      <p>Quantity: {{item.qty}}</p>
+      <p>Total: {{item.price * item.qty | currency}}</p>
+      <button (click)="removeItem(item); $event.stopPropagation()" >Remove</button>
+    </div>
+  </div>
+
+  <!-- معلومات الدفع -->
+  <div class="checkout-box">
+    <h3>Payment Info</h3>
+    <p>Total Items: {{cart.length}}</p>
+    <p>Grand Total: {{getTotal() | currency}}</p>
+    </div>
+ <!-- نموذج معلومات الدفع -->
+  <div class="checkout-box"><form (ngSubmit)="submitPayment()">
+   <label>
+  Full Name:
+  <input 
+    type="text" 
+    [(ngModel)]="fullName" 
+    name="fullName" 
+    required 
+    placeholder="at least 3 characters"
+    minlength="3"
+  >
+</label>
+<br><br>
+
+<label>
+  Address:<br>
+  <input 
+    type="text" 
+    [(ngModel)]="address" 
+    name="address" 
+    required 
+    placeholder="at least 5 characters"
+    minlength="3"
+  >
+</label>
+<br><br>
+
+<label>
+  Credit Card Number:
+  <input 
+    type="text" 
+    [(ngModel)]="creditCard" 
+    name="creditCard" 
+    required 
+    maxlength="16"
+    minlength="16"
+    pattern="\d{16}"
+    placeholder="Enter your 16-digit "
+  >
+</label>
+    <br><br>
+    <button type="submit">Submit</button>
+
+  </form>
+  <p style="color:red; margin-top:10px;">{{successMessage}}</p>
+</div>
+
+<!-- الرسالة بعد الدفع -->
+<div *ngIf="paymentDone" 
+     style="text-align:center; margin-top:50px; font-size:1.5em; color:green; font-weight:bold;">
+  {{successMessage}}<br>
+    <a [routerLink]="['/']"> ⬅️ Back to the page</a>
+</div>
+  
+  <br>
+
+</div>
