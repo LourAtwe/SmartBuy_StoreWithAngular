@@ -1,38 +1,44 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule, CurrencyPipe } from '@angular/common';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Product } from '../product.model';
 import { ProductService } from '../product.service';
-import { RouterModule } from '@angular/router';
+import { CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { RouterModule, RouterLink} from '@angular/router';
+
 
 @Component({
   selector: 'app-cart-page',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule],
+ imports: [CommonModule, FormsModule, RouterModule, RouterLink],
   templateUrl: './cart-page.component.html',
   styleUrls: ['./cart-page.component.css'],
   providers: [CurrencyPipe]
 })
 export class CartPageComponent implements OnInit {
+  @Output() paymentFinished = new EventEmitter<string>();
 
-  cart: any[] = [];
-  fullName: string = '';
-  address: string = '';
-  creditCard: string = '';
+  cart: Product[] = [];
+  fullName = '';
+  address = '';
+  creditCard = '';
 
-  paymentDone: boolean = false;  // للتحكم بما يظهر بعد الدفع
-  successMessage: string = '';
+  paymentDone = false;
+  successMessage = '';
 
   constructor(
     private productService: ProductService,
-    private currencyPipe: CurrencyPipe
+    private currencyPipe: CurrencyPipe,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.cart = this.productService.cart1;
   }
 
-  getTotal() {
-    return this.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+  getTotal(): number {
+    return this.cart.reduce((sum, i) => sum + i.price * i.qty, 0);
   }
 
   removeItem(index: number) {
@@ -46,17 +52,18 @@ export class CartPageComponent implements OnInit {
       return;
     }
 
-    const totalFormatted = this.currencyPipe.transform(this.getTotal(), 'USD');
+    const total = this.currencyPipe.transform(this.getTotal(), 'USD');
+    this.successMessage = `🎉 Congratulations, ${this.fullName}! Your payment was successful. Total is ${total}.`;
 
-    // الرسالة الاحترافية بعد الدفع مع اسم المستخدم والمبلغ والإيموجي
-    this.successMessage = `🎉 Congratulations, ${this.fullName}! Your payment was successful. 💳 The total amount charged to your account is ${totalFormatted}. Thank you for shopping with us! 🛒`;
+    this.paymentFinished.emit(this.fullName);
     this.paymentDone = true;
 
-    // مسح السلة والحقول
+    // تنظيف السلة
     this.cart = [];
     this.productService.cart1 = [];
-    this.fullName = '';
-    this.address = '';
-    this.creditCard = '';
+  }
+
+  goHome() {
+    this.router.navigate(['/']);
   }
 }

@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
+import { Product } from './product.model';
 
 @Injectable({ providedIn: 'root' })
 export class ProductService {
 
-  cart = [
+ cart = [
     { name: "HeadPhones", price: 100, qty: 1, image: '/assets/Airpod.jpg' },
     { name: "Labtob", price: 1500, qty: 1, image: '/assets/Lab.jpeg' },
     { name: "Airbods", price: 50, qty: 1, image: '/assets/airpods.jpeg' },
@@ -17,25 +18,18 @@ export class ProductService {
     { name: "Labtob", price: 500, qty: 1, image: '/assets/Lab2.jpg' },
   ];
 
-  getProduct(index: number) {
+  cart1: Product[] = [];
+
+  getProduct(index: number): Product {
     return this.cart[index];
   }
-  
 
-
-
-
-cart1: any[] = [];
-
-  addItem(item: any) {
-    // فقط إذا لم يكن موجود مسبقاً
+  addItem(item: Product) {
     const exists = this.cart1.find(p => p.name === item.name);
     if (!exists) {
-      this.cart1.push({...item});
+      this.cart1.push({ ...item });
     } else {
-      // تحديث الكمية إذا موجود
       exists.qty = item.qty;
     }
   }
-
 }

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { CartComponent } from './cart/cart.component';
-import { ProductDetailsComponent } from './product-details/product-details.component';
+import { RouterModule, RouterOutlet, RouterLink } from '@angular/router';
+
 @Component({
   selector: 'app-root',
   standalone: true,
-    imports: [
+  imports: [
     RouterModule,
-    CartComponent,
-    ProductDetailsComponent
+    RouterOutlet,
+    RouterLink   // ← مهم جداً
   ],
-  template: `<router-outlet></router-outlet>`  // هنا ستظهر جميع الصفحات
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {}

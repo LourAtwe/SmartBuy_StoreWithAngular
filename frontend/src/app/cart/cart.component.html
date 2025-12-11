@@ -3,36 +3,31 @@
 </header>
 
 <nav>
-  <div>
-    <a [routerLink]="['/']">Product List</a> | 
-    <a [routerLink]="['/cart']">My Cart 🛒</a>
-  </div>
+  <a routerLink="/" >Product List</a> |
+  <a routerLink="/cart">My Cart 🛒</a>
 </nav>
 
 <div class="cart-container">
-  <div 
-    *ngFor="let item of cart; let i = index" 
-    class="cart-item"
-    (click)="goToDetails(i)"
-    style="cursor: pointer;"
-  >
+  <div *ngFor="let item of cart; let i = index" 
+       class="cart-item" 
+       (click)="goToDetails(i)"
+       style="cursor:pointer;">
+
     <img [src]="item.image" alt="{{item.name}}">
     <h3>{{item.name}}</h3>
     <p>Price: {{item.price | currency}}</p>
 
     <select [(ngModel)]="item.qty" (click)="$event.stopPropagation()">
-  <option *ngFor="let q of quantities" [value]="q">{{q}}</option>
-</select>
+      <option *ngFor="let q of quantities" [value]="q">{{ q }}</option>
+    </select>
 
     <p>Total: {{item.price * item.qty | currency}}</p>
-     
-    <button (click)="addToCart(item); $event.stopPropagation()">
-  Add to Cart
-</button>
+
+    <button (click)="addToCart(item); $event.stopPropagation()">Add to Cart</button>
+    
   </div>
 </div>
 
 <h3 class="grand-total">
-  Grand Total: {{getTotal() | currency}}
+  Grand Total: {{ getTotal() | currency }}
 </h3>
-

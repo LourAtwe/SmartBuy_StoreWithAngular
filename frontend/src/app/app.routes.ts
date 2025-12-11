@@ -7,7 +7,6 @@ export const routes: Routes = [
   { path: '', component: CartComponent },               // صفحة الكارت الرئيسية
   { path: 'product/:index', component: ProductDetailsComponent },  // صفحة التفاصيل
   { path: 'cart-page', component: CartPageComponent },
-  { path: 'cart', component: CartPageComponent }
-
-   
+  { path: 'cart', component: CartPageComponent },
+  { path: '**', redirectTo: '' }
 ];
