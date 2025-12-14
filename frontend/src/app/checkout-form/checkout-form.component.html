@@ -1,0 +1,48 @@
+<div class="checkout-box">
+  <h3>Payment Info</h3>
+
+
+  <form (ngSubmit)="submitPayment()">
+
+    <!-- Full Name -->
+    <label>
+      Full Name<br>
+      <input
+        [(ngModel)]="fullName"
+        (ngModelChange)="validateFullName()"
+        name="fullName"
+        placeholder="at least 3 characters">
+    </label>
+    <p *ngIf="fullNameError" class="error-message">
+      Name must be at least 3 characters
+    </p>
+
+    <!-- Address -->
+    <label>
+      Address<br>
+      <input
+        [(ngModel)]="address"
+        (ngModelChange)="validateAddress()"
+        name="address"
+        placeholder="at least 5 characters">
+    </label>
+    <p *ngIf="addressError" class="error-message">
+      Address must be at least 5 characters
+    </p>
+
+    <!-- Credit Card -->
+    <label>
+      Credit Card Number<br>
+      <input
+        [(ngModel)]="creditCard"
+        (ngModelChange)="validateCreditCard()"
+        name="creditCard"
+        placeholder="16 digits only">
+    </label>
+    <p *ngIf="creditCardError" class="error-message">
+      Credit card must be 16 digits
+    </p>
+
+    <button type="submit">Submit Payment</button>
+  </form>
+</div>

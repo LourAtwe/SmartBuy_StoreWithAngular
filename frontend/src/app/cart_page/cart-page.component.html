@@ -1,56 +1,43 @@
 <header><h2>My Cart 🛒</h2></header>
 
 <nav>
-  <a routerLink="/" >Product List</a> |
-  <a routerLink="/cart">My Cart 🛒</a>
+  <p id="Lour2">
+    <a routerLink="/">Product List</a> |
+    <a routerLink="/cart">My Cart 🛒</a>
+  </p>
 </nav>
 
-<!-- المحتوى قبل الدفع -->
-<div class="cart-page-container" *ngIf="!paymentDone">
+<div *ngIf="!paymentDone" class="cart-page-container">
 
   <div class="cart-items">
     <div *ngFor="let item of cart; let i=index" class="cart-item">
       <img [src]="item.image" style="width:100px;height:80px;object-fit:cover;">
-      <h3>{{item.name}}</h3>
-      <p>Price: {{item.price | currency}}</p>
-      <p>Quantity: {{item.qty}}</p>
-      <p>Total: {{item.price * item.qty | currency}}</p>
+      <h3>{{ item.name }}</h3>
+      <p>Price: {{ item.price | currency }}</p>
+      <p>Quantity: {{ item.qty }}</p>
+      <p>Total: {{ item.price * item.qty | currency }}</p>
 
       <button (click)="removeItem(i)">Remove</button>
     </div>
   </div>
 
+  <!-- ✅ Child Component -->
   <div class="checkout-box">
-    <h3>Payment Info</h3>
+    <h3>Order Summary</h3>
     <p>Total Items: {{ cart.length }}</p>
     <p>Grand Total: {{ getTotal() | currency }}</p>
     
   </div>
   
- 
-  <form class="checkout-box" (ngSubmit)="submitPayment()">
-    <label>Full Name<br>
-      <input [(ngModel)]="fullName" name="fullName" required minlength="3" placeholder="at least 3 characters">
-    </label><br>
 
-    <label>Address<br>
-      <input [(ngModel)]="address" name="address" required minlength="5" placeholder="at least 5 characters">
-    </label><br>
-
-    <label>Credit Card Number<br>
-      <input [(ngModel)]="creditCard" name="creditCard" required minlength="16" maxlength="16" pattern="\d{16}" placeholder="16 digits only">
-    </label><br><br>
-
-    <button type="submit">Submit</button>
-  </form>
- <button id="Lour" (click)="goHome()">⬅️ Back to Home</button>
-  <p style="color: red;">{{successMessage}}</p>
+<app-checkout-form 
+    (paymentSuccess)="onPaymentSuccess($event)">
+  </app-checkout-form>
 
 </div>
 
 <!-- الرسالة بعد الدفع -->
-<div *ngIf="paymentDone" style="text-align:center; color:green; font-size:18px; margin-top:50px;">
-  {{ successMessage }}
-  <br><br>
-  <button id="Lour" (click)="goHome()">⬅️ Back to Home</button>
+<div *ngIf="paymentDone" class="payment-success">
+  <p>{{ successMessage }}</p>
+ <button id="Lour" (click)="goHome()">⬅️ Back to Home</button>
 </div>

@@ -1,0 +1,55 @@
+.checkout-box {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+  width: 270px;        /* جانب المنتجات */
+  text-align: left;
+  background-color: #f8f8f800;
+  box-shadow: 2px 2px 6px rgba(0,0,0,0.1);
+  max-height: 350px;
+}
+
+
+.checkout-box h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.checkout-box p {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.checkout-box form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.checkout-box input {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width:90%;
+}
+
+.checkout-box button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.checkout-box button:hover {
+  background-color: #218838;
+}
+
+/* لو بدك الرسائل الحمراء عند خطأ في المدخلات */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: -10px;
+}

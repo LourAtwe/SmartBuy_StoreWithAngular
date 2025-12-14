@@ -6,32 +6,31 @@ input{
   padding:5px;
 }
 #Lour{
-
     margin:5px;
     border-radius: 5px;
     padding:5px;
     color: white;
-    background-color: green;
+    background-color: rgb(10, 10, 10);
     width:15%;
 }
 #Lour:hover{
-  background-color: #155724;
+  background-color: #343534;
 }
 button{
     margin:5px;
     border-radius: 5px;
     padding:5px;
     color: white;
-    background-color: green;
+    background-color: rgb(8, 8, 8);
     width:100%;
 }
 button:hover{
-  color:green;
+  color:rgb(7, 7, 7);
   background-color:white;
 }
 header {
   text-align: center;  
-  background-color: palevioletred;
+  background-color: rgb(8, 8, 8);
   color:white;
   margin-top: 0 !important;
   padding-top: 10px !important;
@@ -41,7 +40,7 @@ header {
 
   nav {
     text-align: center;
-    background-color: palevioletred;
+    background-color: rgb(7, 7, 7);
     overflow: hidden;
     padding:10px;
     margin-bottom: 25px;
@@ -52,7 +51,7 @@ header {
   align-items: center;
   gap: 10px;   /* مسافة بين العناصر */
 }
-nav a {
+nav a,#Lour2 {
   text-decoration: none;
   color: white;
   font-weight: 300;
@@ -65,7 +64,7 @@ nav p {
 
   nav a:hover {
    
-    background-color: rgb(243, 162, 189);
+    background-color: rgb(141, 132, 135);
   }
 
 
@@ -73,14 +72,14 @@ nav p {
 .cart-items button {
   padding: 5px 10px;
   border: none;
-  background-color: #b9309c;
+  background-color: #080808;
   color: white;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 .cart-item button:hover {
-  background-color: #d32f2f;
+  background-color: #940808;
 }
 .cart-page-container {
   display: flex;
@@ -137,4 +136,12 @@ nav p {
   text-align: center;
   font-weight: bold;
 }
+/* رسالة الدفع الناجحة */
+.payment-success {
+  text-align: center;
+  color: green;
+  font-size: 24px;  /* أكبر */
+  margin-top: 50px;
+}
+
 

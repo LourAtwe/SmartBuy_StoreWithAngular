@@ -16,8 +16,19 @@ export class CartComponent {
   cart: Product[] = [];
   quantities = [1,2,3,4,5,6,7,8,9,10];
 
-  constructor(public productService: ProductService, private router: Router) {
-    this.cart = this.productService.cart;
+  constructor(
+    public productService: ProductService,
+    private router: Router
+  ) {
+    // إضافة خاصية error لكل عنصر
+    this.cart = this.productService.cart.map(item => ({
+      ...item,
+      qtyError: false
+    }));
+  }
+
+  validateQty(item: any) {
+    item.qtyError = item.qty < 1;
   }
 
   removeItem(index: number) {
@@ -25,7 +36,10 @@ export class CartComponent {
   }
 
   getTotal(): number {
-    return this.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
+    return this.cart.reduce(
+      (sum, item) => sum + item.price * item.qty,
+      0
+    );
   }
 
   goToDetails(index: number) {

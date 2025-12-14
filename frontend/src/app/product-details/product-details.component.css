@@ -17,7 +17,7 @@
 .info button {
   padding: 5px 10px;
   border: none;
-  background-color: #b9309c;
+  background-color: #0a0a0a;
   color: white;
   border-radius: 4px;
   cursor: pointer;
@@ -25,12 +25,12 @@
 }
 
 .info button:hover {
-  background-color: #d32f2f;
+  background-color: #a5a0a0;
 }
 
 header {
   text-align: center;  
-  background-color: palevioletred;
+  background-color: rgb(12, 12, 12);
   color:white;
   margin-top: 0 !important;
   padding-top: 10px !important;
@@ -40,7 +40,7 @@ header {
 
   nav {
     text-align: center;
-    background-color: palevioletred;
+    background-color: rgb(5, 5, 5);
     overflow: hidden;
     padding:10px;
     margin-bottom: 25px;
@@ -51,7 +51,7 @@ header {
   align-items: center;
   gap: 10px;   /* مسافة بين العناصر */
 }
-nav a {
+nav a,#Lour3 {
   text-decoration: none;
   color: white;
   font-weight: 300;
@@ -64,5 +64,5 @@ nav p {
 
   nav a:hover {
    
-    background-color: rgb(243, 162, 189);
+    background-color: rgb(194, 185, 188);
   }

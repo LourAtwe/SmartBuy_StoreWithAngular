@@ -3,13 +3,15 @@
 </header>
 
 <nav>
-  <a routerLink="/" >Product List</a> |
-  <a routerLink="/cart">My Cart 🛒</a>
+  <p id="Lour2">
+    <a routerLink="/">Product List</a> |
+    <a routerLink="/cart">My Cart 🛒</a>
+  </p>
 </nav>
 
 <div class="cart-container">
-  <div *ngFor="let item of cart; let i = index" 
-       class="cart-item" 
+  <div *ngFor="let item of cart; let i = index"
+       class="cart-item"
        (click)="goToDetails(i)"
        style="cursor:pointer;">
 
@@ -17,14 +19,28 @@
     <h3>{{item.name}}</h3>
     <p>Price: {{item.price | currency}}</p>
 
-    <select [(ngModel)]="item.qty" (click)="$event.stopPropagation()">
-      <option *ngFor="let q of quantities" [value]="q">{{ q }}</option>
+    <!-- ✅ ngModel + ngModelChange -->
+    <select
+      [(ngModel)]="item.qty"
+      (ngModelChange)="validateQty(item)"
+      (click)="$event.stopPropagation()">
+
+      <option *ngFor="let q of quantities" [value]="q">
+        {{ q }}
+      </option>
     </select>
 
-    <p>Total: {{item.price * item.qty | currency}}</p>
+    <!-- ✅ Error message -->
+    <p class="error" *ngIf="item.qtyError">
+      Quantity must be at least 1
+    </p>
 
-    <button (click)="addToCart(item); $event.stopPropagation()">Add to Cart</button>
-    
+    <p>Total: {{ item.price * item.qty | currency }}</p>
+
+    <button (click)="addToCart(item); $event.stopPropagation()">
+      Add to Cart
+    </button>
+
   </div>
 </div>
 

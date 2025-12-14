@@ -3,4 +3,5 @@ export interface Product {
   price: number;
   qty: number;
   image: string;
+  qtyError?: boolean;
 }
